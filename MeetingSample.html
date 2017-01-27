@@ -11,8 +11,8 @@
       <p class="meeting-containerline"></p>
        <p id="widgetFailureMessage"></p>
       <form onsubmit="return createInstantMeeting();" id="meetform1">
-         <input type="text" name="rest" 
-            value="https://app.liveh2h.com/tutormeetweb/rest/v1/meetings/instant" 
+         <input type="text" name="rest"
+            value="https://sandbox.liveh2h.com/tutormeetweb/rest/v1/meetings/createInstantMeeting"
             id="restfield" size="70" maxlength="100" id="restfield"><br>
          <input type="text" name="name" placeholder="Name" id="namefield" size="30" maxlength="40"><br>
          <input type="text" name="email" placeholder="Email" id="emailfield" size="30" maxlength="50"><br>
@@ -20,23 +20,23 @@
       </form>
       <br>
       <button type="submit" form="meetform1" value="Submit">Meet Now</button>
-      <p>Already have an account?<a href="https://app.liveh2h.com/meet/login" target=_blank> Log in</a></p>
+
    </div>
    <div id="Join" class="tabcontent">
       <p class="meeting-containerlinejoin"></p>
       <p id="widgetFailureMessage"></p>
       <form onsubmit="return joinMeeting();" id="meetform2">
-         
-         <input type="text" name="rest" 
-            value="https://app.liveh2h.com/tutormeetweb/rest/v1/meetings/join" 
+
+         <input type="text" name="rest"
+            value="https://sandbox.liveh2h.com/tutormeetweb/rest/v1/meetings/join"
             id="restfield" size="70" maxlength="100" id="restfield" ><br>
          <input type="text" name="name" placeholder="Name" id="namefield" size="30" maxlength="40"><br>
          <input type="text" name="email" placeholder="Email" id="emailfield" size="30" maxlength="50"><br>
-         <input type="text" name="meetingId" placeholder="Meeting ID" id="meetfield" size="30" maxlength="50"><br> 
+         <input type="text" name="meetingId" placeholder="Meeting ID" id="meetfield" size="30" maxlength="50"><br>
       </form>
       <br>
       <button type="submit" form="meetform2" value="Submit">Join Meeting</button>
-      <p>Already have an account? <a href="https://app.liveh2h.com/meet/login" target=_blank>Log in</a></p>
+
    </div>
 </div>
 
@@ -44,4 +44,4 @@
 <script type="text/javascript" src="http://developer.liveh2h.com/wp-content/themes/Karma/meeting-plugin.js"></script>
 
 </body>
-</html> 
+</html>

@@ -1,0 +1,296 @@
+<html>
+    <head>
+        <title>/LiveH2H - Slack Integration</title>
+        <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <link href="css/style.css" rel="stylesheet" />
+        <style>
+            /* http://meyerweb.com/eric/tools/css/reset/ 
+               v2.0 | 20110126
+               License: none (public domain)
+            */
+            @import 'https://fonts.googleapis.com/css?family=Montserrat';
+
+            html, body, div, span, applet, object, iframe,
+            h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+            a, abbr, acronym, address, big, cite, code,
+            del, dfn, em, img, ins, kbd, q, s, samp,
+            small, strike, strong, sub, sup, tt, var,
+            b, u, i, center,
+            dl, dt, dd, ol, ul, li,
+            fieldset, form, label, legend,
+            table, caption, tbody, tfoot, thead, tr, th, td,
+            article, aside, canvas, details, embed, 
+            figure, figcaption, footer, header, hgroup, 
+            menu, nav, output, ruby, section, summary,
+            time, mark, audio, video {
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+            }
+            /* HTML5 display-role reset for older browsers */
+            article, aside, details, figcaption, figure, 
+            footer, header, hgroup, menu, nav, section {
+                display: block;
+            }
+            body {
+                line-height: 1;
+                font-family: 'Montserrat', sans-serif;
+                text-align: center;
+            }
+            ol, ul {
+                list-style: none;
+            }
+            blockquote, q {
+                quotes: none;
+            }
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+                content: '';
+                content: none;
+            }
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+            /* ------------------------------------------ */
+            .nav-container,.sec-container,footer{
+                width: 980px;
+                margin: 0 auto;
+            }
+            .sec-container,footer{
+                text-align: left;
+            }
+            nav{
+                background-color: black;
+            }
+            .nav-container{
+                overflow: auto;
+
+                padding: 0.6em 1em;
+                display: flex;
+                justify-content:space-between;
+                align-items: center;
+            }
+            .nav-float-left{
+                /*float: left;*/
+            }
+            .nav-float-right{
+                /*float: right;*/
+                color: white;
+            }
+            .nav-float-right a{
+                color: white;
+                padding: 0.3em 0.7em;
+            }
+            body{
+                background: black;
+                line-height: 1.2;
+            }
+            body > section{
+                padding: 1.6em 1em;
+            }
+            code{
+                padding: 2px 4px;
+                font-size: 0.9em;
+                color: #c7254e;
+                background-color: #f9f2f4;
+                border-radius: 4px;
+                font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+            }
+            .head-h2{
+                padding: 0.4em 0em 0;
+                width: auto;
+                display: inline-block;
+                color: black;
+                border-radius: 10px;
+                font-size: 2em;
+                margin-bottom: 0.8em;
+            }
+            @keyframes changeLetter {
+              0% {
+                content: "/";
+              }
+                10% {
+                content: "/L";
+              }
+                20% {
+                content: "/Li";
+              }
+                30% {
+                content: "/Liv";
+              }
+                40% {
+                content: "/Live";
+              }
+                50% {
+                content: "/LiveH";
+              }
+                60% {
+                content: "/LiveH2";
+              }
+                70% {
+                content: "/LiveH2H";
+              }
+                100%{
+                    content: "/LiveH2H";
+                }
+            }
+            @keyframes blink {
+              0%,100% {
+                color: white;
+              }
+                50%{
+                    color: black;
+                }
+            }
+            .head-h2::before {
+              content: "/LiveH2H";
+              animation: changeLetter 2.5s linear 1 alternate;
+              animation-fill-mode:forwards;
+            }
+            .head-h2::after {
+              content: "_";
+              animation: blink 0.8s linear infinite alternate;
+            }
+            .quote{
+                margin-bottom: 1em;
+                font-size: 2em;
+                font-style: italic;
+                opacity: 0.7;
+                position: relative;
+            }
+            .qcharac{
+                position: absolute;
+                font-size: 3em;
+            }
+            .quote .qcharac:nth-of-type(1){
+                top: -0.35em;
+                left: 1em
+            }
+            .quote .qcharac:nth-of-type(2){
+                bottom: -0.35em;
+            }
+            section{
+                background: white;
+            }
+            ul{
+               font-family:  "Lato", sans-serif;
+            }
+            li:nth-child(odd){
+                font-size: 1em;
+                font-weight: lighter;
+            }
+            li:nth-child(odd):before{
+
+            }
+            li:nth-child(even){
+                margin-bottom: 1em;
+            }
+            footer{
+                padding: 1.2em;
+            }
+            footer a{
+                display: inline-block;
+                padding: 0.3em 0.7em;
+                color: white;
+            }
+            a,
+            a:link,
+            a:visited,
+            a:hover,
+            a:active{
+                text-decoration: none;
+            }
+            .installed-message {
+                color: #4CAF50;
+                font-family: sans-serif;
+                border: 1px solid #4CAF50;
+                display: inline-block;
+                padding: 10px 15px;
+                border-radius: 5px;
+                margin-bottom: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div class="nav-container">
+                <div class="nav-float-left">
+                    <img src="img/Logo-for-website.png"><!-- LiveH2H Logo -->
+                </div>
+                <a href="https://slack.com/oauth/pick_reflow?client_id=19710695585.81036963991&scope=chat%3Awrite%3Abot+users.profile%3Aread+commands+users%3Aread"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+            </div>
+        </nav>
+        <section>
+            <div class="sec-container">
+                <div class="head">
+                    <h2 class="head-h2"></h2>
+                </div>
+                <div class="installed-message">
+                    /LiveH2H has been integrated with your Slack team.
+                </div>
+                <div class='instruction'>
+                    <ul class='inst-list'>
+                        <li>To create a meeting and invite a user</li>
+                        <li><code>/liveh2h @slackusername</code></li>
+                        <li>To create a meeting and invite a user</li>
+                            <li><code>/liveh2h meetnow @slackusername</code></li>
+                        <li>To create a meeting and invite multiple users</li>
+                            <li><code>/liveh2h @slackuser1 @slackuser2</code></li>
+                        <li>To create a meeting and invite multiple users</li>
+                            <li><code>/liveh2h meetnow @slackuser1 @slackuser2</code></li>
+                        <li>To create a meeting and invite a channel</li>
+                            <li><code>/liveh2h #channelName</code></li>
+                        <li>To create a meeting and invite a channel</li>
+                            <li><code>/liveh2h meetnow #channelName</code></li>
+                        <li>To create a meeting and invite multiple channels</li>
+                            <li><code>/liveh2h #channel1 #channel2</code></li>
+                        <li>To create a meeting and invite multiple channels</li>
+                            <li><code>/liveh2h meetnow #channel1 #channel2</code></li>
+                        <li>To create a meeting, invite a channel and one/more users who are not in the channel</li>
+                            <li> <code>/liveh2h  @slackuser1 @slackuser2 #channelName</code></li>
+                        <li>To create a meeting, invite a channel and one/more users who are not in the channel </li>
+                            <li><code>/liveh2h meetnow @slackuser1 @slackuser2 #channelName</code></li>
+                        <li>To create a meeting, invite multiple channels and one/more users who are not in the channel </li>
+                            <li><code>/liveh2h @slackuser1 @slackuser2 #channel1 #channel2</code></li>
+                        <li>To create a meeting, invite multiple channels and one/more users who are not in the channel </li>
+                            <li><code>/liveh2h meetnow @slackuser1 @slackuser2 #channel1 #channel2</code></li>
+                        <li>To join a meeting</li>
+                            <li><code>/liveh2h join 123456789 </code></li>
+                        <li>To join a meeting </li>
+                        <li><code>/liveh2h join 123-456-789 </code></li>
+                    </ul>
+                </div>
+                <div class="add-class">
+                    
+                    <a href="https://slack.com/oauth/pick_reflow?client_id=19710695585.81036963991&scope=chat%3Awrite%3Abot+users.profile%3Aread+commands+users%3Aread"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x" /></a>
+                </div>
+            </div>
+            
+        </section>
+        <footer>
+            <a target='_blank' href="http://www.liveh2h.com/about/">About</a>
+            <a target='_blank' href="http://www.liveh2h.com/contact/">Support</a>
+            <a target="_blank" href="https://www.liveh2h.com/privacy-policy/">Privacy Policy</a>
+        </footer>
+    </body>
+</html>
